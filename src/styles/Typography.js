@@ -2,40 +2,38 @@ import styled from "styled-components";
 
 export const HeadingOne = styled.h1`
   font-weight: 700;
-  font-size: var(--font-size-1);
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-gray-100)"};
+  font-size: ${({ theme }) => theme.font.size1};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.gray100};
 `;
 
 export const HeadingTwo = styled.h2`
   font-weight: 700;
-  font-size: var(--font-size-2);
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-gray-100)"};
+  font-size: ${({ theme }) => theme.font.size2};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.gray100};
 `;
 
 export const HeadingThree = styled.h3`
   font-weight: 700;
-  font-size: var(--font-size-3);
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-gray-100)"};
+  font-size: ${({ theme }) => theme.font.size3};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.gray100};
 `;
 
 export const HeadingFour = styled.h4`
   font-weight: 700;
-  font-size: var(--font-size-5);
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-gray-100)"};
+  font-size: ${({ theme }) => theme.font.size5};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.gray100};
 `;
 
 export const Text = styled.span`
-  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
+  font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : "400")};
 
-  font-size: ${(props) =>
-    props.fontSize
-      ? `var(--font-size-${props.fontSize})`
-      : "var(--font-size-4)"};
+  font-size: ${({ theme, fontSize }) =>
+    fontSize ? theme.font[fontSize] : theme.font.size4};
 
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-gray-100)"};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.gray100};
 `;

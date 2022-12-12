@@ -9,11 +9,11 @@ export const CartProductStyled = styled.li`
   align-items: center;
   width: 100%;
   border: 1px solid transparent;
-  border-radius: var(--radius-2);
+  border-radius: ${({ theme }) => theme.border.radius2};
   transition: all 0.5s ease;
 
   &:hover {
-    border-color: var(--color-gray-20);
+    border-color: ${({ theme }) => theme.colors.gray20};
   }
 
   & > figure {
@@ -23,8 +23,8 @@ export const CartProductStyled = styled.li`
     min-width: 5rem;
     overflow: hidden;
     object-fit: cover;
-    background-color: var(--color-gray-20);
-    border-radius: var(--radius-2);
+    background-color: ${({ theme }) => theme.colors.gray20};
+    border-radius: ${({ theme }) => theme.border.radius2};
   }
 
   & > figure img {
@@ -50,7 +50,7 @@ export const CartProductStyled = styled.li`
     background-color: transparent;
     border: none;
     height: fit-content;
-    font-size: var(--font-size-6);
+    font-size: ${({ theme }) => theme.font.size6};
     padding: 0;
   }
 

@@ -9,7 +9,7 @@ export const CartStyled = styled.aside`
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
-    background-color: var(--color-primary);
+    background-color: ${({ theme }) => theme.colors.primary};
     justify-content: center;
   }
 
@@ -20,7 +20,7 @@ export const CartStyled = styled.aside`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background-color: var(--color-gray-0);
+    background-color: ${({ theme }) => theme.colors.gray0};
   }
 
   & .cartProducts {
@@ -29,8 +29,8 @@ export const CartStyled = styled.aside`
     gap: 1rem;
     max-height: 20.1875rem;
     overflow-y: auto;
-    border-bottom: 2px solid var(--color-gray-20);
+    border-bottom: 2px solid ${({ theme }) => theme.colors.gray20};
     padding: 1.25rem 0.625rem;
-    background-color: var(--color-gray-0);
+    background-color: ${({ theme }) => theme.colors.gray0};
   }
 `;

@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { FormStyled } from "./InputSearchStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { InputStyled } from "../../../styles/InputStyled";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/UserContext";
 
-export const InputSearch = ({ handleSearch }) => {
+export const InputSearch = () => {
+  const { handleSearch } = useContext(UserContext);
   const [inputSearch, setInputSearch] = useState("");
 
   const handleSubmit = (e) => {

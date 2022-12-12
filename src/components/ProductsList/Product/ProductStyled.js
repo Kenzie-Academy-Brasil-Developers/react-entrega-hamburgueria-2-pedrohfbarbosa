@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ProductStyled = styled.li`
   width: 18.75rem;
   height: 21.625rem;
-  border-radius: var(--radius-2);
-  border: 2px solid var(--color-gray-0);
+  border-radius: ${({ theme }) => theme.border.radius2};
+  border: 2px solid ${({ theme }) => theme.colors.gray0};
   transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@ export const ProductStyled = styled.li`
   flex-shrink: 0;
 
   &:hover {
-    border-color: var(--color-gray-100);
+    border-color: ${({ theme }) => theme.colors.gray100};
   }
 
   & figure {
@@ -20,7 +20,7 @@ export const ProductStyled = styled.li`
     justify-content: center;
     width: 100%;
     height: 44%;
-    background-color: var(--color-gray-0);
+    background-color: ${({ theme }) => theme.colors.gray0};
     overflow: hidden;
     object-fit: cover;
   }

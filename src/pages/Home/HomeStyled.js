@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AppStyled = styled.div`
+export const HomeStyled = styled.div`
   & > div {
     display: flex;
     justify-content: space-between;

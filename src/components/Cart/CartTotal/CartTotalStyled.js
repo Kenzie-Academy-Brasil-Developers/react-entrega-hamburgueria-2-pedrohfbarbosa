@@ -6,7 +6,7 @@ export const CartTotalStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--color-gray-0);
+  background-color: ${({ theme }) => theme.colors.gray0};
 
   & > div {
     display: flex;

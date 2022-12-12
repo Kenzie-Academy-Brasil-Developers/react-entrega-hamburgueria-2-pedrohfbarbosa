@@ -4,13 +4,12 @@ import { CartTotal } from "./CartTotal";
 import { CartStyled } from "./CartStyled";
 import { HeadingThree } from "../../styles/Typography";
 import { Text } from "../../styles/Typography";
+import { useContext } from "react";
+import { CartContext } from "../../providers/CartContext";
 
-export const Cart = ({
-  currentSale,
-  cartTotal,
-  handleRemoveFromCart,
-  clearCard,
-}) => {
+export const Cart = () => {
+  const { currentSale } = useContext(CartContext);
+
   return (
     <CartStyled>
       <div className="cartTitle">
@@ -19,23 +18,16 @@ export const Cart = ({
       {currentSale.length === 0 ? (
         <div className="emptyCart">
           <HeadingThree>Sua sacola está vazia</HeadingThree>
-          <Text fontSize="5">Adicione itens</Text>
+          <Text fontSize="size5">Adicione itens</Text>
         </div>
       ) : (
         <div>
           <ul className="cartProducts">
             {currentSale.map((e) => (
-              <CartProduct
-                key={e.id}
-                image={e.img}
-                name={e.name}
-                category={e.category}
-                id={e.id}
-                handleRemoveFromCart={handleRemoveFromCart}
-              />
+              <CartProduct key={e.id} product={e} />
             ))}
           </ul>
-          <CartTotal cartTotal={cartTotal} clearCard={clearCard} />
+          <CartTotal />
         </div>
       )}
     </CartStyled>

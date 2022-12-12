@@ -4,12 +4,12 @@ import { Logo } from "./Logo";
 import { InputSearch } from "./InputSearch";
 import { Container } from "../../styles/Container";
 
-export const Header = ({ resetToAllProducts, handleSearch }) => {
+export const Header = () => {
   return (
     <HeaderStyled>
       <Container>
-        <Logo resetToAllProducts={resetToAllProducts} />
-        <InputSearch handleSearch={handleSearch} />
+        <Logo />
+        <InputSearch />
       </Container>
     </HeaderStyled>
   );

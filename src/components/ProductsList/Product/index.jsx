@@ -1,32 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ProductStyled } from "./ProductStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { HeadingThree } from "../../../styles/Typography";
 import { Text } from "../../../styles/Typography";
+import { CartContext } from "../../../providers/CartContext";
 
-export const Product = ({
-  image,
-  name,
-  category,
-  price,
-  handleAddToCart,
-  product,
-}) => {
+export const Product = ({ product }) => {
+  const { handleAddToCart } = useContext(CartContext);
   return (
     <ProductStyled>
       <figure>
-        <img src={image} alt={name} />
+        <img src={product.img} alt={product.name} />
       </figure>
       <div>
-        <HeadingThree>{name}</HeadingThree>
-        <Text fontSize="6" color="gray-50">
-          {category}
+        <HeadingThree>{product.name}</HeadingThree>
+        <Text fontSize="size6" color="gray50">
+          {product.category}
         </Text>
-        <Text fontWeight="600" fontSize="5" color="primary">
+        <Text fontWeight="600" fontSize="size5" color="primary">
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",
-          }).format(price)}
+          }).format(product.price)}
         </Text>
         <ButtonStyled
           height="medium"

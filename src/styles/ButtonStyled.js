@@ -1,29 +1,30 @@
 import styled, { css } from "styled-components";
 import { Button } from "./components/Button";
+import { theme } from "./themes";
 
 export const ButtonStyled = styled(Button)`
   cursor: pointer;
-  border-radius: var(--radius-1);
+  border-radius: ${({ theme }) => theme.border.radius1};
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1.25rem;
   font-weight: 600;
-  font-size: var(--font-size-5);
+  font-size: ${({ theme }) => theme.font.size5};
 
-  color: ${(props) =>
-    props.color ? `var(--color-${props.color})` : "var(--color-white)"};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.white};
 
-  background-color: ${(props) =>
-    props.bg ? `var(--color-${props.bg})` : "var(--color-primary)"};
+  background-color: ${({ theme, bg }) =>
+    bg ? theme.colors[bg] : theme.colors.primary};
 
-  height: ${(props) => (props.height === "medium" ? "2.5rem" : "3.75rem")};
+  height: ${({ height }) => (height === "medium" ? "2.5rem" : "3.75rem")};
 
-  width: ${(props) => (props.width ? props.width : "fit-content")};
+  width: ${({ width }) => (width ? width : "fit-content")};
 
-  ${(props) =>
-    props.position &&
+  ${({ position }) =>
+    position &&
     css`
       position: absolute;
       right: 0.5rem;
@@ -33,18 +34,14 @@ export const ButtonStyled = styled(Button)`
     opacity: 0.7;
   }
 
-  ${(props) =>
-    props.hover &&
+  ${({ hover }) =>
+    hover &&
     css`
       &:hover {
-        background-color: ${(props) =>
-          props.bgHover
-            ? `var(--color-${props.bgHover})`
-            : "var(--color-primary)"};
-        color: ${(props) =>
-          props.colorHover
-            ? `var(--color-${props.colorHover})`
-            : "var(--color-white)"};
+        background-color: ${({ bgHover }) =>
+          bgHover ? theme.colors[bgHover] : theme.colors.primary};
+        color: ${({ colorHover }) =>
+          colorHover ? theme.colors[colorHover] : theme.colors.white};
         opacity: 1;
       }
     `}
