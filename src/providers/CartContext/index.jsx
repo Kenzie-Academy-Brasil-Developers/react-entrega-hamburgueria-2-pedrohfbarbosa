@@ -6,6 +6,11 @@ export const CartContext = createContext({});
 
 export const CartProvider = ({ children }) => {
   const [currentSale, setCurrentSale] = useState([]);
+  const [modalCart, setModalCart] = useState(false)
+
+  const handleModalCart = () => {
+    setModalCart(!modalCart)
+  }
 
   const totalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -60,7 +65,10 @@ export const CartProvider = ({ children }) => {
         handleRemoveFromCart,
         clearCard,
         handleRemoveOneItem,
-        handleAddOneItem
+        handleAddOneItem,
+        modalCart,
+        handleModalCart,
+        setModalCart
       }}
     >
       {children}

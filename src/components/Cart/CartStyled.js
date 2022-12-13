@@ -1,12 +1,26 @@
 import styled from "styled-components";
 
-export const CartStyled = styled.aside`
+export const Modal = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  background-color: ${({ theme }) => theme.colors.opacity};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 1rem;
+`;
+
+export const CartStyled = styled.div`
   width: 100%;
   max-width: 22.6875rem;
-
-  @media (max-width: 56.25rem) {
-    max-width: 40.625rem;
-  }
 `;
 
 export const CartTitle = styled.div`
@@ -16,6 +30,22 @@ export const CartTitle = styled.div`
   padding: 0 1.5rem;
   background-color: ${({ theme }) => theme.colors.primary};
   justify-content: center;
+
+  position: relative;
+
+  & > button {
+    position: absolute;
+    right: 1rem;
+
+    width: 1.75rem;
+    height: 1.75rem;
+
+    color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.opacity};
+    }
+  }
 `;
 
 export const EmptyCart = styled.div`

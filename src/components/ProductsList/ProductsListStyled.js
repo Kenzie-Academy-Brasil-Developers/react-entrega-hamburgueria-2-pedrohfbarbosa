@@ -4,7 +4,7 @@ export const ProductsListStyled = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75%;
+  width: 100%;
   gap: 1rem;
 
   & h2 {

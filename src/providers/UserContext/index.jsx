@@ -29,11 +29,9 @@ export const UserProvider = ({ children }) => {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      console.log(response);
-
       setProducts(response.data);
     } catch (error) {
-      toast.error("Erro de conexão", toastStyle);
+      toast.error(error.response.data, toastStyle);
       navigate("/");
     } finally {
       setLoading(false);
@@ -46,13 +44,14 @@ export const UserProvider = ({ children }) => {
 
   const handleRegister = async (data) => {
     try {
-      const response = await instance.post("/users", data);
+      await instance.post("/users", data);
 
-      console.log(response);
+      toast.success("Cadastro efetuado com sucesso", toastStyle);
 
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data, toastStyle);
     }
   };
 
@@ -60,23 +59,31 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await instance.post("/login", data);
 
-      console.log(response);
-
       localStorage.setItem("@TOKEN", response.data.accessToken);
 
-      getProducts();
-      
+      await getProducts();
+
       navigate("/home");
 
-      setLoading(false);
+      toast.success("Login efetuado com sucesso", toastStyle);
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data, toastStyle);
     }
   };
 
   const resetToAllProducts = () => {
     setFilteredWord(null);
     setFilteredProducts(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("@TOKEN");
+
+    setProducts(null);
+    setFilteredProducts(null);
+    
+    navigate("/");
   };
 
   return (
@@ -91,6 +98,7 @@ export const UserProvider = ({ children }) => {
         loading,
         handleRegister,
         handleLogin,
+        handleLogout,
       }}
     >
       {children}
