@@ -7,6 +7,7 @@ export const Input = ({
   name,
   value,
   className,
+  register
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ export const Input = ({
         name={name}
         value={value}
         className={className}
+        {...register}
       />
     </>
   );

@@ -10,16 +10,34 @@ export const CartProvider = ({ children }) => {
   const totalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(currentSale.reduce((x, y) => x + y.price, 0));
+  }).format(currentSale.reduce((x, y) => x + y.quantity * y.price, 0));
+
+  const handleAddOneItem = (id) => {
+    const index = currentSale.findIndex((e) => e.id === id);
+    let newCurrentSale = [...currentSale];
+    newCurrentSale[index].quantity += 1;
+    setCurrentSale(newCurrentSale);
+  };
+
+  const handleRemoveOneItem = (id) => {
+    const index = currentSale.findIndex((e) => e.id === id);
+    let newCurrentSale = [...currentSale];
+    if (newCurrentSale[index].quantity > 1) {
+      newCurrentSale[index].quantity -= 1;
+      setCurrentSale(newCurrentSale);
+    } else {
+      handleRemoveFromCart(id);
+    }
+  };
 
   const handleAddToCart = (product) => {
     const testProduct = currentSale.find((e) => e.id === product.id);
 
     if (!testProduct) {
-      setCurrentSale(currentSale.concat([product]));
+      setCurrentSale(currentSale.concat([{ ...product, quantity: 1 }]));
       toast.success("Item adicionado ao carrinho com sucesso", toastStyle);
     } else {
-      toast.error("Item já está no carrinho", toastStyle);
+      handleAddOneItem(product.id);
     }
   };
 
@@ -41,6 +59,8 @@ export const CartProvider = ({ children }) => {
         handleAddToCart,
         handleRemoveFromCart,
         clearCard,
+        handleRemoveOneItem,
+        handleAddOneItem
       }}
     >
       {children}

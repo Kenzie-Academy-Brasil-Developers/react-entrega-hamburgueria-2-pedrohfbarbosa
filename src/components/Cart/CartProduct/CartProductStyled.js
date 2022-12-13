@@ -45,8 +45,10 @@ export const CartProductStyled = styled.li`
     flex-direction: column;
     gap: 0.5rem;
   }
+`;
 
-  & button {
+export const ButtonsWrapperStyled = styled.div`
+  & > button {
     background-color: transparent;
     border: none;
     height: fit-content;
@@ -54,7 +56,32 @@ export const CartProductStyled = styled.li`
     padding: 0;
   }
 
-  & button:hover {
+  & > button:hover {
     text-decoration: underline;
+  }
+
+  & {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-1);
+    gap: 0.5rem;
+  }
+
+  & > div > button {
+    background-color: transparent;
+    border: none;
+    height: fit-content;
+    font-size: var(--font-size-6);
+    padding: 0.5rem;
+  }
+
+  & > div > button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;

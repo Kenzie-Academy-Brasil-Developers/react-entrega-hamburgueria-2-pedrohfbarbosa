@@ -24,16 +24,6 @@ export const UserProvider = ({ children }) => {
     getProducts();
   }, []);
 
-  const handleSearch = (search) => {
-    setFilteredWord(search);
-    const newFilter = products.filter(
-      (e) =>
-        e.name.toLowerCase().includes(search.toLowerCase()) ||
-        e.category.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredProducts(newFilter);
-  };
-
   const resetToAllProducts = () => {
     setFilteredWord(null);
     setFilteredProducts(null);
@@ -45,8 +35,9 @@ export const UserProvider = ({ children }) => {
         products,
         filteredWord,
         filteredProducts,
-        handleSearch,
         resetToAllProducts,
+        setFilteredWord,
+        setFilteredProducts
       }}
     >
       {children}

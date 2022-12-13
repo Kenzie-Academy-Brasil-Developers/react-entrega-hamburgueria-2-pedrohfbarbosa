@@ -1,7 +1,7 @@
 import React from "react";
 import { CartProduct } from "./CartProduct";
 import { CartTotal } from "./CartTotal";
-import { CartStyled } from "./CartStyled";
+import { CartProducts, CartStyled, CartTitle, EmptyCart } from "./CartStyled";
 import { HeadingThree } from "../../styles/Typography";
 import { Text } from "../../styles/Typography";
 import { useContext } from "react";
@@ -12,21 +12,21 @@ export const Cart = () => {
 
   return (
     <CartStyled>
-      <div className="cartTitle">
+      <CartTitle>
         <HeadingThree color="white">Carrinho de compras</HeadingThree>
-      </div>
+      </CartTitle>
       {currentSale.length === 0 ? (
-        <div className="emptyCart">
+        <EmptyCart>
           <HeadingThree>Sua sacola está vazia</HeadingThree>
           <Text fontSize="size5">Adicione itens</Text>
-        </div>
+        </EmptyCart>
       ) : (
         <div>
-          <ul className="cartProducts">
+          <CartProducts>
             {currentSale.map((e) => (
               <CartProduct key={e.id} product={e} />
             ))}
-          </ul>
+          </CartProducts>
           <CartTotal />
         </div>
       )}

@@ -1,29 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { FormStyled } from "./InputSearchStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { InputStyled } from "../../../styles/InputStyled";
 import { useContext } from "react";
 import { UserContext } from "../../../providers/UserContext";
+import { schema } from "./schema";
 
 export const InputSearch = () => {
-  const { handleSearch } = useContext(UserContext);
-  const [inputSearch, setInputSearch] = useState("");
+  const { products, setFilteredWord, setFilteredProducts } =
+    useContext(UserContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleSearch(inputSearch);
-    setInputSearch("");
+  const { register, handleSubmit, reset } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: { search: "" },
+  });
+
+  const handleSearch = (data) => {
+    setFilteredWord(data.search);
+    const newFilter = products.filter(
+      (e) =>
+        e.name.toLowerCase().includes(data.search.toLowerCase()) ||
+        e.category.toLowerCase().includes(data.search.toLowerCase())
+    );
+    setFilteredProducts(newFilter);
+    reset({ search: "" });
   };
 
-  const handleChange = (e) => setInputSearch(e.target.value);
-
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit(handleSearch)}>
       <InputStyled
-        handleChange={handleChange}
         name="inputSearch"
         placeholder="Digitar pesquisa"
-        value={inputSearch}
+        register={register("search")}
       />
 
       <ButtonStyled height="medium" position type="submit">
