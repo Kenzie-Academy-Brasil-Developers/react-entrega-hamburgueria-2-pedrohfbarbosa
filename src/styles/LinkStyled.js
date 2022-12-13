@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
-import { Button } from "./components/Button";
-import { theme } from "./themes";
+import { Link } from "react-router-dom";
 
-export const ButtonStyled = styled(Button)`
+export const LinkStyled = styled(Link)`
   cursor: pointer;
 
   border-radius: ${({ theme }) => theme.border.radius1};
@@ -44,7 +43,7 @@ export const ButtonStyled = styled(Button)`
       &:hover {
         background-color: ${({ bgHover, theme }) =>
           bgHover ? theme.colors[bgHover] : theme.colors.primary};
-        color: ${({ colorHover }) =>
+        color: ${({ colorHover, theme }) =>
           colorHover ? theme.colors[colorHover] : theme.colors.white};
         opacity: 1;
       }

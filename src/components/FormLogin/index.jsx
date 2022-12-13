@@ -5,6 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
+import { FormStyled } from "../../styles/FormStyled";
+import { LoginWrapperStyled } from "./LoginWrapperStyled";
+import { InputStyled } from "../../styles/InputStyled";
+import { ButtonStyled } from "../../styles/ButtonStyled";
+import { HeadingThree, Text } from "../../styles/Typography";
+import { LinkStyled } from "../../styles/LinkStyled";
 
 export const FormLogin = () => {
   const { handleLogin } = useContext(UserContext);
@@ -18,37 +24,49 @@ export const FormLogin = () => {
   });
 
   return (
-    <div>
+    <LoginWrapperStyled>
       <div>
-        <h3>Login</h3>
+        <HeadingThree>Login</HeadingThree>
       </div>
 
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <FormStyled onSubmit={handleSubmit(handleLogin)}>
         <fieldset>
-          <label htmlFor="email">Email</label>
-          <input
+          <InputStyled
             type="email"
             name="email"
-            placeholder="Digite seu email"
+            placeholder=""
             {...register("email")}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          <label htmlFor="email">Email</label>
+          {errors.email && (
+            <Text fontSize="size6" color="secondary">
+              {errors.email.message}
+            </Text>
+          )}
         </fieldset>
 
         <fieldset>
-          <label htmlFor="password">Digite sua senha</label>
-          <input
+          <InputStyled
             type="password"
             name="password"
-            placeholder="Digite sua senha"
+            placeholder=""
             {...register("password")}
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          <label htmlFor="password">Digite sua senha</label>
+          {errors.password && (
+            <Text fontSize="size6" color="secondary">
+              {errors.password.message}
+            </Text>
+          )}
         </fieldset>
 
-        <button type="submit">Logar</button>
-        <Link to="/register">Cadastrar</Link>
-      </form>
-    </div>
+        <ButtonStyled width="100%" type="submit">
+          Logar
+        </ButtonStyled>
+        <LinkStyled color="gray50" bg="gray0" width="100%" to="/register">
+          Cadastrar
+        </LinkStyled>
+      </FormStyled>
+    </LoginWrapperStyled>
   );
 };
