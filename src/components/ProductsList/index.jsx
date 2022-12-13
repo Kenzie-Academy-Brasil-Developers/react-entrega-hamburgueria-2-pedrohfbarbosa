@@ -8,7 +8,7 @@ import { UserContext } from "../../providers/UserContext";
 
 export const ProductsList = () => {
   const { filteredWord, products, filteredProducts } = useContext(UserContext);
-
+  
   return (
     <ProductsListStyled>
       {filteredWord && (
