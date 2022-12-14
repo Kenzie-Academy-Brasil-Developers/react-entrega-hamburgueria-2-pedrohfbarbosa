@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeadingOne = styled.h1`
   font-weight: 700;
@@ -36,4 +36,10 @@ export const Text = styled.span`
 
   color: ${({ theme, color }) =>
     color ? theme.colors[color] : theme.colors.gray100};
+
+  line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : "1.375rem")};
+
+  ${({textCenter}) => textCenter && css`
+    text-align: center;
+  `}
 `;

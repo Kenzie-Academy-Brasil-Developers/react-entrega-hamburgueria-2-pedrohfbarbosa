@@ -19,7 +19,7 @@ export const FormStyled = styled.form`
 
   & > fieldset > label {
     font-weight: 400;
-    font-size: ${({ theme }) => theme.font.size4};
+    font-size: ${({ theme }) => theme.font.size5};
 
     color: ${({ theme }) => theme.colors.gray50};
 
@@ -30,12 +30,16 @@ export const FormStyled = styled.form`
     transform: translateY(1.35rem);
     transition: 300ms;
 
-    background-color: ${({theme}) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.white};
 
     padding: 0 0.3rem;
   }
 
   input:focus + label {
-    transform: translateY(-50%) scale(.8);
+    transform: translateY(-50%) scale(0.9);
+  }
+
+  input:not(:placeholder-shown) + label {
+    transform: translateY(-50%) scale(0.9);
   }
 `;

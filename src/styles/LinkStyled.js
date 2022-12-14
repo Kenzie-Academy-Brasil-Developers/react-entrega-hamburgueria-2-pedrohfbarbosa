@@ -48,4 +48,25 @@ export const LinkStyled = styled(Link)`
         opacity: 1;
       }
     `}
+
+  ${({ registerlink }) =>
+    registerlink &&
+    css`
+      border: none;
+
+      background-color: transparent;
+      color: ${({ theme }) => theme.colors.gray50};
+
+      padding: 0;
+
+      height: fit-content;
+
+      font-size: 0.875rem;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.9;
+      }
+    `}
 `;

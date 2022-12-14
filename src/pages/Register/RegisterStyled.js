@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginPageStyled = styled.div`
+export const RegisterStyled = styled.div`
   min-height: 100vh;
 
   display: flex;
@@ -13,7 +13,7 @@ export const LoginPageStyled = styled.div`
     gap: 2rem;
   }
 
-  & > div > div:nth-of-type(1) {
+  & > div > div:nth-of-type(2) {
     display: flex;
     flex-direction: column;
     gap: 1rem;

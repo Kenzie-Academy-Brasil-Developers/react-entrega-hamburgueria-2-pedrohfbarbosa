@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
@@ -32,10 +31,10 @@ export const FormLogin = () => {
       <FormStyled onSubmit={handleSubmit(handleLogin)}>
         <fieldset>
           <InputStyled
+            placeholder=" "
             type="email"
             name="email"
-            placeholder=""
-            {...register("email")}
+            register={register("email")}
           />
           <label htmlFor="email">Email</label>
           {errors.email && (
@@ -47,10 +46,10 @@ export const FormLogin = () => {
 
         <fieldset>
           <InputStyled
+            placeholder=" "
             type="password"
             name="password"
-            placeholder=""
-            {...register("password")}
+            register={register("password")}
           />
           <label htmlFor="password">Digite sua senha</label>
           {errors.password && (
@@ -63,6 +62,11 @@ export const FormLogin = () => {
         <ButtonStyled width="100%" type="submit">
           Logar
         </ButtonStyled>
+
+        <Text fontSize="size5" color="gray50" textCenter>
+          Crie sua conta para saborear muitas delícias e matar sua fome!
+        </Text>
+
         <LinkStyled color="gray50" bg="gray0" width="100%" to="/register">
           Cadastrar
         </LinkStyled>

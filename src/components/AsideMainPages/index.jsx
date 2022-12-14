@@ -1,10 +1,16 @@
 import { Logo } from "../Header/Logo";
-import { FiShoppingBag } from "react-icons/fi";
+import { ToastMainPage } from "./ToastMainPage";
+import imgDots from "../../assets/img/GroupDots.svg";
+import { AsideStyled } from "./AsideStyled";
 
 export const AsideMainPages = () => {
   return (
-    <div>
+    <AsideStyled>
       <Logo />
-    </div>
+      <ToastMainPage />
+      <figure>
+        <img src={imgDots} alt="Dots" />
+      </figure>
+    </AsideStyled>
   );
 };
