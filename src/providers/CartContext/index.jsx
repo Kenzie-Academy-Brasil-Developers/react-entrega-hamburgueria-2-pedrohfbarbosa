@@ -6,16 +6,18 @@ export const CartContext = createContext({});
 
 export const CartProvider = ({ children }) => {
   const [currentSale, setCurrentSale] = useState([]);
-  const [modalCart, setModalCart] = useState(false)
+  const [modalCart, setModalCart] = useState(false);
 
   const handleModalCart = () => {
-    setModalCart(!modalCart)
-  }
+    setModalCart(!modalCart);
+  };
 
   const totalPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(currentSale.reduce((x, y) => x + y.quantity * y.price, 0));
+
+  const totalItems = currentSale.reduce((x, y) => x + y.quantity, 0);
 
   const handleAddOneItem = (id) => {
     const index = currentSale.findIndex((e) => e.id === id);
@@ -68,7 +70,8 @@ export const CartProvider = ({ children }) => {
         handleAddOneItem,
         modalCart,
         handleModalCart,
-        setModalCart
+        setModalCart,
+        totalItems
       }}
     >
       {children}

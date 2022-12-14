@@ -15,7 +15,13 @@ export const HeaderStyled = styled.header`
 
   & > div > div {
     width: 100%;
-    max-width: 25rem;
+    max-width: 30rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  & > div > div > div {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -32,8 +38,7 @@ export const HeaderStyled = styled.header`
       flex-direction: column;
       justify-content: center;
       gap: 1rem;
-  }
-
+    }
   }
 `;
 
@@ -48,16 +53,34 @@ export const ButtonHeader = styled.button`
   align-items: center;
   justify-content: center;
 
-  border-radius: ${({theme}) => theme.border.radius1};
+  border-radius: ${({ theme }) => theme.border.radius1};
 
   cursor: pointer;
 
+  position: relative;
+
   &:hover {
-    background-color: ${({theme}) => theme.colors.gray20};
+    background-color: ${({ theme }) => theme.colors.gray20};
   }
 
   & > svg {
     height: 50%;
     width: 50%;
   }
-`
+
+  & > span {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+
+    background-color: ${({ theme }) => theme.colors.primary};
+    padding: 0.1rem 0.3rem;
+
+    border-radius: ${({ theme }) => theme.border.radius2};
+
+    color: ${({ theme }) => theme.colors.white};
+
+    font-size: ${({ theme }) => theme.font.size6};
+    font-weight: 300;
+  }
+`;

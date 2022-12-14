@@ -10,7 +10,7 @@ import { CartContext } from "../../providers/CartContext";
 
 export const Header = () => {
   const { handleLogout } = useContext(UserContext);
-  const { handleModalCart } = useContext(CartContext);
+  const { handleModalCart, totalItems } = useContext(CartContext);
 
   return (
     <HeaderStyled>
@@ -18,13 +18,17 @@ export const Header = () => {
         <Logo />
         <div>
           <InputSearch />
-          <ButtonHeader onClick={handleModalCart}>
-            <AiOutlineShoppingCart />
-          </ButtonHeader>
-          
-          <ButtonHeader onClick={handleLogout}>
-            <FiLogOut />
-          </ButtonHeader>
+
+          <div>
+            <ButtonHeader onClick={handleModalCart}>
+              <AiOutlineShoppingCart />
+              <span>{totalItems}</span>
+            </ButtonHeader>
+
+            <ButtonHeader onClick={handleLogout}>
+              <FiLogOut />
+            </ButtonHeader>
+          </div>
         </div>
       </Container>
     </HeaderStyled>
