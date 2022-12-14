@@ -1,5 +1,15 @@
 import React from "react";
 
+interface IPropsInput {
+  handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  type: React.HTMLInputTypeAttribute | undefined;
+  placeholder: string | undefined;
+  name: string | undefined;
+  value: string | undefined;
+  className: string | undefined;
+  register: any;
+}
+
 export const Input = ({
   handleChange,
   type,
@@ -7,8 +17,8 @@ export const Input = ({
   name,
   value,
   className,
-  register
-}) => {
+  register,
+}: IPropsInput) => {
   return (
     <>
       <input

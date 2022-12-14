@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 interface iStyledProps {
-  fontWeight: string | number;
   width: string;
   height: string;
   bg: string;

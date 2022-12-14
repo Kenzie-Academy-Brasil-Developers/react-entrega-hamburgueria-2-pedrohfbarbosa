@@ -2,7 +2,17 @@ import styled, { css } from "styled-components";
 import { Button } from "./components/Button";
 import { theme } from "./themes";
 
-export const ButtonStyled = styled(Button)`
+interface iStyledProps {
+  width: string;
+  height: string;
+  bg: string;
+  color: string;
+  position: boolean;
+  hover: boolean;
+  colorHover: string;
+}
+
+export const ButtonStyled = styled(Button)<iStyledProps>`
   cursor: pointer;
 
   border-radius: ${({ theme }) => theme.border.radius1};
@@ -42,10 +52,8 @@ export const ButtonStyled = styled(Button)`
     hover &&
     css`
       &:hover {
-        background-color: ${({ bgHover, theme }) =>
-          bgHover ? theme.colors[bgHover] : theme.colors.primary};
-        color: ${({ colorHover }) =>
-          colorHover ? theme.colors[colorHover] : theme.colors.white};
+        background-color: ${({ theme }) => theme.colors.primary};
+        color: ${({ colorHover }) => theme.colors.white};
         opacity: 1;
       }
     `}
