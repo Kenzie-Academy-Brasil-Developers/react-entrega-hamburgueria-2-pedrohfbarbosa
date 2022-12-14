@@ -1,11 +1,12 @@
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
-import { toastStyle } from "../../styles/toast";
+import { IProducts } from "../UserContext/interfaces";
+import { ICartContext, ICartProducts, IContextCartProps } from "./interfaces";
 
-export const CartContext = createContext({});
+export const CartContext = createContext({} as ICartContext);
 
-export const CartProvider = ({ children }) => {
-  const [currentSale, setCurrentSale] = useState([]);
+export const CartProvider = ({ children }: IContextCartProps) => {
+  const [currentSale, setCurrentSale] = useState<ICartProducts[]>([]);
   const [modalCart, setModalCart] = useState(false);
 
   const handleModalCart = () => {
@@ -19,14 +20,14 @@ export const CartProvider = ({ children }) => {
 
   const totalItems = currentSale.reduce((x, y) => x + y.quantity, 0);
 
-  const handleAddOneItem = (id) => {
+  const handleAddOneItem = (id: number) => {
     const index = currentSale.findIndex((e) => e.id === id);
     let newCurrentSale = [...currentSale];
     newCurrentSale[index].quantity += 1;
     setCurrentSale(newCurrentSale);
   };
 
-  const handleRemoveOneItem = (id) => {
+  const handleRemoveOneItem = (id: number) => {
     const index = currentSale.findIndex((e) => e.id === id);
     let newCurrentSale = [...currentSale];
     if (newCurrentSale[index].quantity > 1) {
@@ -37,21 +38,39 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: IProducts) => {
     const testProduct = currentSale.find((e) => e.id === product.id);
 
     if (!testProduct) {
       setCurrentSale(currentSale.concat([{ ...product, quantity: 1 }]));
-      toast.success("Item adicionado ao carrinho com sucesso", toastStyle);
+      toast.success("Item adicionado ao carrinho com sucesso", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } else {
       handleAddOneItem(product.id);
     }
   };
 
-  const handleRemoveFromCart = (id) => {
+  const handleRemoveFromCart = (id: number) => {
     const newCurrentSale = currentSale.filter((e) => e.id !== id);
     setCurrentSale(newCurrentSale);
-    toast.warn("Item removido do carrinho com sucesso", toastStyle);
+    toast.warn("Item removido do carrinho com sucesso", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const clearCard = () => {
@@ -71,7 +90,7 @@ export const CartProvider = ({ children }) => {
         modalCart,
         handleModalCart,
         setModalCart,
-        totalItems
+        totalItems,
       }}
     >
       {children}

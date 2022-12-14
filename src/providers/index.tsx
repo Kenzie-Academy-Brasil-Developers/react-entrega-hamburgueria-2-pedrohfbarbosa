@@ -1,7 +1,11 @@
 import { CartProvider } from "./CartContext";
 import { UserProvider } from "./UserContext";
 
-export const Providers = ({ children }) => {
+interface IContextProviders{
+  children: React.ReactNode;
+}
+
+export const Providers = ({ children }: IContextProviders) => {
   return (
     <UserProvider>
       <CartProvider>{children}</CartProvider>

@@ -1,5 +1,12 @@
 import styled, { css } from "styled-components";
 
+interface iStyledProps{
+  fontWeight: string | number;
+  fontSize: string;
+  lineHeight: string;
+  textCenter: boolean;
+}
+
 export const HeadingOne = styled.h1`
   font-weight: 700;
   font-size: ${({ theme }) => theme.font.size1};
@@ -28,7 +35,7 @@ export const HeadingFour = styled.h4`
     color ? theme.colors[color] : theme.colors.gray100};
 `;
 
-export const Text = styled.span`
+export const Text = styled.span<iStyledProps>`
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : "400")};
 
   font-size: ${({ theme, fontSize }) =>

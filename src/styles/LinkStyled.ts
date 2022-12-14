@@ -1,7 +1,18 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const LinkStyled = styled(Link)`
+interface iStyledProps {
+  fontWeight: string | number;
+  width: string;
+  height: string;
+  bg: string;
+  position: boolean;
+  hover: boolean;
+  colorHover: string;
+  registerlink: boolean;
+}
+
+export const LinkStyled = styled(Link)<iStyledProps>`
   cursor: pointer;
 
   border-radius: ${({ theme }) => theme.border.radius1};
@@ -41,8 +52,7 @@ export const LinkStyled = styled(Link)`
     hover &&
     css`
       &:hover {
-        background-color: ${({ bgHover, theme }) =>
-          bgHover ? theme.colors[bgHover] : theme.colors.primary};
+        background-color: ${({ theme }) => theme.colors.primary};
         color: ${({ colorHover, theme }) =>
           colorHover ? theme.colors[colorHover] : theme.colors.white};
         opacity: 1;
