@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components";
 
-interface iStyledProps{
-  fontWeight: string | number;
-  fontSize: string;
-  lineHeight: string;
-  textCenter: boolean;
+interface IStyledProps {
+  fontWeight?: string | number;
+  fontSize?: string;
+  textCenter?: boolean;
+  color?: string;
+  lineHeight?: string;
 }
 
 export const HeadingOne = styled.h1`
@@ -35,7 +36,7 @@ export const HeadingFour = styled.h4`
     color ? theme.colors[color] : theme.colors.gray100};
 `;
 
-export const Text = styled.span<iStyledProps>`
+export const Text = styled.span<IStyledProps>`
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : "400")};
 
   font-size: ${({ theme, fontSize }) =>
@@ -46,7 +47,9 @@ export const Text = styled.span<iStyledProps>`
 
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : "1.375rem")};
 
-  ${({textCenter}) => textCenter && css`
-    text-align: center;
-  `}
+  ${({ textCenter }) =>
+    textCenter &&
+    css`
+      text-align: center;
+    `}
 `;

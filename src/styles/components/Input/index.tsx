@@ -1,13 +1,13 @@
 import React from "react";
 
 interface IPropsInput {
-  handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  type: React.HTMLInputTypeAttribute | undefined;
-  placeholder: string | undefined;
-  name: string | undefined;
-  value: string | undefined;
-  className: string | undefined;
-  register: any;
+  handleChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  type?: React.HTMLInputTypeAttribute | undefined;
+  placeholder?: string | undefined;
+  name?: string | undefined;
+  value?: string | undefined;
+  className?: string | undefined;
+  register?: any;
 }
 
 export const Input = ({

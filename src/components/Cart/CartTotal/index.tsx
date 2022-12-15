@@ -1,4 +1,3 @@
-import React from "react";
 import { CartTotalStyled } from "./CartTotalStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { HeadingFour } from "../../../styles/Typography";
@@ -8,6 +7,7 @@ import { CartContext } from "../../../providers/CartContext";
 
 export const CartTotal = () => {
   const { totalPrice, clearCard } = useContext(CartContext);
+
   return (
     <CartTotalStyled>
       <div>
@@ -18,8 +18,7 @@ export const CartTotal = () => {
       </div>
       <ButtonStyled
         handleClick={clearCard}
-        height
-        hover
+        hover={true}
         width="100%"
         color="gray50"
         bg="gray20"

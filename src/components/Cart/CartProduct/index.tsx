@@ -5,8 +5,13 @@ import { HeadingFour } from "../../../styles/Typography";
 import { Text } from "../../../styles/Typography";
 import { useContext } from "react";
 import { CartContext } from "../../../providers/CartContext";
+import { ICartProducts } from "../../../providers/CartContext/interfaces";
 
-export const CartProduct = ({ product }) => {
+interface ICartProduct {
+  product: ICartProducts;
+}
+
+export const CartProduct = ({ product }: ICartProduct) => {
   const { handleRemoveFromCart, handleRemoveOneItem, handleAddOneItem } =
     useContext(CartContext);
 
@@ -15,6 +20,7 @@ export const CartProduct = ({ product }) => {
       <figure>
         <img src={product.img} alt={product.name} />
       </figure>
+
       <div>
         <div>
           <HeadingFour>{product.name}</HeadingFour>
@@ -22,6 +28,7 @@ export const CartProduct = ({ product }) => {
             {product.category}
           </Text>
         </div>
+
         <ButtonsWrapperStyled>
           <ButtonStyled
             color="gray50"
@@ -29,6 +36,7 @@ export const CartProduct = ({ product }) => {
           >
             Remover
           </ButtonStyled>
+
           <div>
             <ButtonStyled
               handleClick={() => handleRemoveOneItem(product.id)}
@@ -36,9 +44,11 @@ export const CartProduct = ({ product }) => {
             >
               -
             </ButtonStyled>
+
             <Text color="gray100" fontSize="size6">
               {product.quantity}
             </Text>
+
             <ButtonStyled
               handleClick={() => handleAddOneItem(product.id)}
               color="gray50"

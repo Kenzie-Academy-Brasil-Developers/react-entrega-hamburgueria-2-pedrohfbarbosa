@@ -1,23 +1,33 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormStyled } from "./InputSearchStyled";
+import { FormStyledSearch } from "./InputSearchStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { InputStyled } from "../../../styles/InputStyled";
 import { useContext } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { schema } from "./schema";
+import { Navigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+
+interface IFormValues {
+  search: string;
+}
 
 export const InputSearch = () => {
   const { products, setFilteredWord, setFilteredProducts } =
     useContext(UserContext);
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm<IFormValues>({
     resolver: yupResolver(schema),
     defaultValues: { search: "" },
   });
 
-  const handleSearch = (data) => {
+  if (!products) {
+    return <Navigate to="/" />;
+  }
+
+  const handleSearch: SubmitHandler<IFormValues> = (data) => {
     setFilteredWord(data.search);
     const newFilter = products.filter(
       (e) =>
@@ -29,7 +39,7 @@ export const InputSearch = () => {
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit(handleSearch)}>
+    <FormStyledSearch onSubmit={handleSubmit(handleSearch)}>
       <InputStyled
         name="inputSearch"
         placeholder="Digitar pesquisa"
@@ -37,8 +47,8 @@ export const InputSearch = () => {
       />
 
       <ButtonStyled height="medium" position type="submit">
-        Pesquisar
+        <BsSearch />
       </ButtonStyled>
-    </FormStyled>
+    </FormStyledSearch>
   );
 };

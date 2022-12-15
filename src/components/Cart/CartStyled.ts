@@ -20,16 +20,22 @@ export const Modal = styled.div`
 
 export const CartStyled = styled.div`
   width: 100%;
-  max-width: 22.6875rem;
+  max-width: 30rem;
+
+  border-radius: ${({ theme }) => theme.border.radius2};
+
+  overflow: hidden;
 `;
 
 export const CartTitle = styled.div`
   height: 4.0625rem;
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
-  background-color: ${({ theme }) => theme.colors.primary};
   justify-content: center;
+
+  padding: 0 1.5rem;
+
+  background-color: ${({ theme }) => theme.colors.primary};  
 
   position: relative;
 
@@ -55,6 +61,7 @@ export const EmptyCart = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
   background-color: ${({ theme }) => theme.colors.gray0};
 `;
 
@@ -62,9 +69,14 @@ export const CartProducts = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   max-height: 20.1875rem;
+
   overflow-y: auto;
+
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray20};
+
   padding: 1.25rem 0.625rem;
+
   background-color: ${({ theme }) => theme.colors.gray0};
 `;

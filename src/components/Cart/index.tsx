@@ -17,16 +17,20 @@ import { ButtonHeader } from "../Header/HeaderStyled";
 export const Cart = () => {
   const { currentSale, setModalCart } = useContext(CartContext);
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const handleOutClick = (e) => {
+  const handleOutClick = (e: any) => {
+    if (!ref.current) {
+      return;
+    }
+
     if (!ref.current.contains(e.target)) {
-      setModalCart(null);
+      setModalCart(false);
     }
   };
 
   const handleClick = () => {
-    setModalCart(null);
+    setModalCart(false);
   };
 
   return (

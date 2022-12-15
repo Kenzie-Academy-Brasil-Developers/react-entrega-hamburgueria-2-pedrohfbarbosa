@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const ProductStyled = styled.li`
   width: 18.75rem;
   height: 21.625rem;
+
   border-radius: ${({ theme }) => theme.border.radius2};
   border: 2px solid ${({ theme }) => theme.colors.gray0};
+
   transition: all 0.5s ease;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,9 +21,12 @@ export const ProductStyled = styled.li`
   & figure {
     display: flex;
     justify-content: center;
+
     width: 100%;
     height: 44%;
+
     background-color: ${({ theme }) => theme.colors.gray0};
+
     overflow: hidden;
     object-fit: cover;
   }
@@ -32,9 +38,11 @@ export const ProductStyled = styled.li`
   & div {
     width: 100%;
     height: 56%;
+
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
     justify-content: space-between;
+
+    padding: 1.5rem;
   }
 `;

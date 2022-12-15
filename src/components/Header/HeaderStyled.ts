@@ -14,8 +14,6 @@ export const HeaderStyled = styled.header`
   }
 
   & > div > div {
-    width: 100%;
-    max-width: 30rem;
     display: flex;
     align-items: center;
     gap: 1rem;

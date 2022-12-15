@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import { useContext } from "react";
@@ -10,6 +10,7 @@ import { InputStyled } from "../../styles/InputStyled";
 import { ButtonStyled } from "../../styles/ButtonStyled";
 import { HeadingThree, Text } from "../../styles/Typography";
 import { LinkStyled } from "../../styles/LinkStyled";
+import { IDataLogin } from "../../providers/UserContext/interfaces";
 
 export const FormLogin = () => {
   const { handleLogin } = useContext(UserContext);
@@ -18,9 +19,13 @@ export const FormLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataLogin>({
     resolver: yupResolver(schema),
   });
+
+  const onsubmit: SubmitHandler<IDataLogin> = async (data) => {
+    await handleLogin(data);
+  };
 
   return (
     <LoginWrapperStyled>
@@ -28,7 +33,7 @@ export const FormLogin = () => {
         <HeadingThree>Login</HeadingThree>
       </div>
 
-      <FormStyled onSubmit={handleSubmit(handleLogin)}>
+      <FormStyled onSubmit={handleSubmit(onsubmit)}>
         <fieldset>
           <InputStyled
             placeholder=" "

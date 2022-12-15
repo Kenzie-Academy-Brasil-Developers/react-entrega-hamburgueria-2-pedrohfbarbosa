@@ -1,17 +1,17 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-interface iStyledProps {
-  width: string;
-  height: string;
-  bg: string;
-  position: boolean;
-  hover: boolean;
-  colorHover: string;
-  registerlink: boolean;
+interface IStyledProps {
+  width?: string;
+  height?: string;
+  bg?: string;
+  position?: boolean;
+  hover?: boolean;
+  colorHover?: string;
+  registerlink?: string;
 }
 
-export const LinkStyled = styled(Link)<iStyledProps>`
+export const LinkStyled = styled(Link)<IStyledProps>`
   cursor: pointer;
 
   border-radius: ${({ theme }) => theme.border.radius1};

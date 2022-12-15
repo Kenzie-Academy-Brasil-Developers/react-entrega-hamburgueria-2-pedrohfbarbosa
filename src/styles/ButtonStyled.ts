@@ -2,17 +2,17 @@ import styled, { css } from "styled-components";
 import { Button } from "./components/Button";
 import { theme } from "./themes";
 
-interface iStyledProps {
-  width: string;
-  height: string;
-  bg: string;
-  color: string;
-  position: boolean;
-  hover: boolean;
-  colorHover: string;
+interface IStyledProps {
+  width?: string;
+  height?: string;
+  bg?: string;
+  color?: string;
+  position?: boolean;
+  hover?: boolean;
+  colorHover?: string;
 }
 
-export const ButtonStyled = styled(Button)<iStyledProps>`
+export const ButtonStyled = styled(Button)<IStyledProps>`
   cursor: pointer;
 
   border-radius: ${({ theme }) => theme.border.radius1};

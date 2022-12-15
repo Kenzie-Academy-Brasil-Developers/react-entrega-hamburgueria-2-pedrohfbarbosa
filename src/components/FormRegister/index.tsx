@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import { useContext } from "react";
@@ -10,6 +10,7 @@ import { RegisterWrapperStyled } from "./RegisterWrapperStyled";
 import { FormStyled } from "../../styles/FormStyled";
 import { InputStyled } from "../../styles/InputStyled";
 import { ButtonStyled } from "../../styles/ButtonStyled";
+import { IDataRegister } from "../../providers/UserContext/interfaces";
 
 export const FormRegister = () => {
   const { handleRegister } = useContext(UserContext);
@@ -18,20 +19,25 @@ export const FormRegister = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataRegister>({
     resolver: yupResolver(schema),
   });
+
+  const submit: SubmitHandler<IDataRegister> = async (data) => {
+    await handleRegister(data);
+  };
 
   return (
     <RegisterWrapperStyled>
       <div>
         <HeadingThree>Cadastro</HeadingThree>
+
         <LinkStyled to="/" registerlink="true">
           Retornar para o login
         </LinkStyled>
       </div>
 
-      <FormStyled onSubmit={handleSubmit(handleRegister)}>
+      <FormStyled onSubmit={handleSubmit(submit)}>
         <fieldset>
           <InputStyled
             placeholder=" "
