@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ProductStyled } from "./ProductStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { HeadingThree } from "../../../styles/Typography";

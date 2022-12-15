@@ -12,10 +12,12 @@ export const CartTotal = () => {
     <CartTotalStyled>
       <div>
         <HeadingFour>Total</HeadingFour>
+
         <Text color="gray50" fontWeight="600" fontSize="size5">
           {totalPrice}
         </Text>
       </div>
+
       <ButtonStyled
         handleClick={clearCard}
         hover={true}

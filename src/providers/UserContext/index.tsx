@@ -23,6 +23,7 @@ export const UserProvider = ({ children }: IContextUserProps) => {
   );
 
   const [loading, setLoading] = useState(true);
+  const [loadingForm, setLoadingForm] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,16 +42,13 @@ export const UserProvider = ({ children }: IContextUserProps) => {
 
       setProducts(data);
     } catch (err) {
-      toast.error("Acesso não autorizado ou falha na conexão", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      const currentError = err as AxiosError;
+
+      const message =
+        (currentError.response?.data as string) || "Algo deu errado!";
+
+      toast.error(message);
+
       navigate("/");
     } finally {
       setLoading(false);
@@ -62,39 +60,27 @@ export const UserProvider = ({ children }: IContextUserProps) => {
   }, []);
 
   const handleRegister = async (data: IDataRegister): Promise<void> => {
+    setLoadingForm(true);
     try {
-      const { data: responseData } = await instance.post<IResponse>(
-        "/users",
-        data
-      );
+      await instance.post("/users", data);
 
-      toast.success("Cadastro efetuado com sucesso", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.success("Cadastro efetuado com sucesso");
 
       navigate("/");
     } catch (err) {
-      toast.error("E-mail já existente ou falha na conexão", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      const currentError = err as AxiosError;
+
+      const message =
+        (currentError.response?.data as string) || "Algo deu errado!";
+
+      toast.error(message);
+    } finally {
+      setLoadingForm(false);
     }
   };
 
   const handleLogin = async (data: IDataLogin): Promise<void> => {
+    setLoadingForm(true);
     try {
       const { data: responseData } = await instance.post<IResponse>(
         "/login",
@@ -107,32 +93,22 @@ export const UserProvider = ({ children }: IContextUserProps) => {
 
       navigate("/home");
 
-      toast.success("Login efetuado com sucesso", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.success("Login efetuado com sucesso");
     } catch (err) {
-      toast.error("E-mail ou senha incorretos ou falha na conexão", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      const currentError = err as AxiosError;
+
+      const message =
+        (currentError.response?.data as string) || "Algo deu errado!";
+
+      toast.error(message);
+    } finally {
+      setLoadingForm(false);
     }
   };
 
   const resetToAllProducts = () => {
     setFilteredWord(null);
+
     setFilteredProducts(null);
   };
 
@@ -140,6 +116,7 @@ export const UserProvider = ({ children }: IContextUserProps) => {
     localStorage.removeItem("@TOKEN");
 
     setProducts(null);
+
     setFilteredProducts(null);
 
     navigate("/");
@@ -158,6 +135,7 @@ export const UserProvider = ({ children }: IContextUserProps) => {
         handleRegister,
         handleLogin,
         handleLogout,
+        loadingForm,
       }}
     >
       {children}

@@ -7,7 +7,9 @@ export const AsideMainPages = () => {
   return (
     <AsideStyled>
       <Logo />
+
       <ToastMainPage />
+
       <figure>
         <img src={imgDots} alt="Dots" />
       </figure>

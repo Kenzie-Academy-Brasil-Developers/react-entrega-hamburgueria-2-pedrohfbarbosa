@@ -22,16 +22,22 @@ export const CartProvider = ({ children }: IContextCartProps) => {
 
   const handleAddOneItem = (id: number) => {
     const index = currentSale.findIndex((e) => e.id === id);
+
     let newCurrentSale = [...currentSale];
+
     newCurrentSale[index].quantity += 1;
+
     setCurrentSale(newCurrentSale);
   };
 
   const handleRemoveOneItem = (id: number) => {
     const index = currentSale.findIndex((e) => e.id === id);
+
     let newCurrentSale = [...currentSale];
+
     if (newCurrentSale[index].quantity > 1) {
       newCurrentSale[index].quantity -= 1;
+
       setCurrentSale(newCurrentSale);
     } else {
       handleRemoveFromCart(id);
@@ -43,16 +49,8 @@ export const CartProvider = ({ children }: IContextCartProps) => {
 
     if (!testProduct) {
       setCurrentSale(currentSale.concat([{ ...product, quantity: 1 }]));
-      toast.success("Item adicionado ao carrinho com sucesso", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+
+      toast.success("Item adicionado ao carrinho com sucesso");
     } else {
       handleAddOneItem(product.id);
     }
@@ -60,17 +58,10 @@ export const CartProvider = ({ children }: IContextCartProps) => {
 
   const handleRemoveFromCart = (id: number) => {
     const newCurrentSale = currentSale.filter((e) => e.id !== id);
+
     setCurrentSale(newCurrentSale);
-    toast.warn("Item removido do carrinho com sucesso", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+
+    toast.warn("Item removido do carrinho com sucesso");
   };
 
   const clearCard = () => {

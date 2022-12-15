@@ -5,6 +5,7 @@ interface IPropsButton {
   type?: "button" | "submit" | "reset" | undefined;
   children?: React.ReactNode;
   className?: string | undefined;
+  disabled?: boolean | undefined;
 }
 
 export const Button = ({
@@ -12,9 +13,15 @@ export const Button = ({
   type,
   children,
   className,
+  disabled,
 }: IPropsButton) => {
   return (
-    <button className={className} onClick={handleClick} type={type}>
+    <button
+      disabled={disabled}
+      className={className}
+      onClick={handleClick}
+      type={type}
+    >
       {children}
     </button>
   );

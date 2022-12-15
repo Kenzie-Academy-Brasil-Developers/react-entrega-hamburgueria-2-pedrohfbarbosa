@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import { CartProduct } from "./CartProduct";
 import { CartTotal } from "./CartTotal";
 import {
@@ -10,7 +10,6 @@ import {
 } from "./CartStyled";
 import { HeadingThree } from "../../styles/Typography";
 import { Text } from "../../styles/Typography";
-import { useContext } from "react";
 import { CartContext } from "../../providers/CartContext";
 import { ButtonHeader } from "../Header/HeaderStyled";
 
@@ -19,30 +18,42 @@ export const Cart = () => {
 
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const handleOutClick = (e: any) => {
+  const handleOutClick = (e: MouseEvent) => {
     if (!ref.current) {
       return;
     }
 
-    if (!ref.current.contains(e.target)) {
+    const target = e.target as HTMLDivElement;
+
+    if (!ref.current.contains(target)) {
       setModalCart(false);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleOutClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutClick);
+    };
+  }, []);
 
   const handleClick = () => {
     setModalCart(false);
   };
 
   return (
-    <Modal onClick={handleOutClick}>
+    <Modal>
       <CartStyled ref={ref}>
         <CartTitle>
           <HeadingThree color="white">Carrinho de compras</HeadingThree>
           <ButtonHeader onClick={handleClick}>x</ButtonHeader>
         </CartTitle>
+
         {currentSale.length === 0 ? (
           <EmptyCart>
             <HeadingThree>Sua sacola está vazia</HeadingThree>
+
             <Text fontSize="size5">Adicione itens</Text>
           </EmptyCart>
         ) : (
@@ -52,6 +63,7 @@ export const Cart = () => {
                 <CartProduct key={e.id} product={e} />
               ))}
             </CartProducts>
+
             <CartTotal />
           </div>
         )}

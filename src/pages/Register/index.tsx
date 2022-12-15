@@ -10,11 +10,14 @@ export const Register = () => {
     <RegisterStyled>
       <Container>
         <AsideMainPages />
+
         <div>
           <div>
             <Logo />
+
             <ToastMainPage />
           </div>
+
           <FormRegister />
         </div>
       </Container>

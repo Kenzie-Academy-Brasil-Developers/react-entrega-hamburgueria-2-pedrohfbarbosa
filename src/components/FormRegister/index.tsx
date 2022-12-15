@@ -1,8 +1,7 @@
-import React from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
-import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { HeadingThree, Text } from "../../styles/Typography";
 import { LinkStyled } from "../../styles/LinkStyled";
@@ -11,15 +10,17 @@ import { FormStyled } from "../../styles/FormStyled";
 import { InputStyled } from "../../styles/InputStyled";
 import { ButtonStyled } from "../../styles/ButtonStyled";
 import { IDataRegister } from "../../providers/UserContext/interfaces";
+import { Spinner } from "../Spinner";
 
 export const FormRegister = () => {
-  const { handleRegister } = useContext(UserContext);
+  const { handleRegister, loadingForm } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IDataRegister>({
+    mode: "onBlur",
     resolver: yupResolver(schema),
   });
 
@@ -42,10 +43,12 @@ export const FormRegister = () => {
           <InputStyled
             placeholder=" "
             type="text"
-            name="name"
+            id="name"
             register={register("name")}
           />
+
           <label htmlFor="name">Nome</label>
+
           {errors.name && (
             <Text fontSize="size6" color="secondary">
               {errors.name.message}
@@ -57,10 +60,12 @@ export const FormRegister = () => {
           <InputStyled
             placeholder=" "
             type="email"
-            name="email"
+            id="email"
             register={register("email")}
           />
+
           <label htmlFor="email">Email</label>
+
           {errors.email && (
             <Text fontSize="size6" color="secondary">
               {errors.email.message}
@@ -72,10 +77,12 @@ export const FormRegister = () => {
           <InputStyled
             placeholder=" "
             type="password"
-            name="password"
+            id="password"
             register={register("password")}
           />
+
           <label htmlFor="password">Digite sua senha</label>
+
           {errors.password && (
             <Text fontSize="size6" color="secondary">
               {errors.password.message}
@@ -87,10 +94,12 @@ export const FormRegister = () => {
           <InputStyled
             placeholder=" "
             type="password"
-            name="confirmPassword"
+            id="confirmPassword"
             register={register("confirmPassword")}
           />
+
           <label htmlFor="confirmPassword">Confirme sua senha</label>
+
           {errors.confirmPassword && (
             <Text fontSize="size6" color="secondary">
               {errors.confirmPassword.message}
@@ -104,8 +113,9 @@ export const FormRegister = () => {
           hover
           width="100%"
           type="submit"
+          disabled={loadingForm}
         >
-          Cadastrar
+          {loadingForm ? <Spinner small={true} /> : "Cadastrar"}
         </ButtonStyled>
       </FormStyled>
     </RegisterWrapperStyled>

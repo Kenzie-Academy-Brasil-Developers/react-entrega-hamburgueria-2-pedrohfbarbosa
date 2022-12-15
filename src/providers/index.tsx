@@ -1,7 +1,7 @@
 import { CartProvider } from "./CartContext";
 import { UserProvider } from "./UserContext";
 
-interface IContextProviders{
+interface IContextProviders {
   children: React.ReactNode;
 }
 

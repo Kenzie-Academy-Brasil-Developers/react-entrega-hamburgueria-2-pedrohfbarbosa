@@ -1,4 +1,5 @@
 import React from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface IPropsInput {
   handleChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -7,7 +8,8 @@ interface IPropsInput {
   name?: string | undefined;
   value?: string | undefined;
   className?: string | undefined;
-  register?: any;
+  register?: UseFormRegisterReturn;
+  id?: string | undefined;
 }
 
 export const Input = ({
@@ -18,10 +20,12 @@ export const Input = ({
   value,
   className,
   register,
+  id,
 }: IPropsInput) => {
   return (
     <>
       <input
+        id={id}
         onChange={handleChange}
         type={type || "text"}
         placeholder={placeholder}

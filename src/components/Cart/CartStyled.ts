@@ -29,13 +29,14 @@ export const CartStyled = styled.div`
 
 export const CartTitle = styled.div`
   height: 4.0625rem;
+  
   display: flex;
   align-items: center;
   justify-content: center;
 
   padding: 0 1.5rem;
 
-  background-color: ${({ theme }) => theme.colors.primary};  
+  background-color: ${({ theme }) => theme.colors.primary};
 
   position: relative;
 
@@ -56,6 +57,7 @@ export const CartTitle = styled.div`
 
 export const EmptyCart = styled.div`
   height: 9.875rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;

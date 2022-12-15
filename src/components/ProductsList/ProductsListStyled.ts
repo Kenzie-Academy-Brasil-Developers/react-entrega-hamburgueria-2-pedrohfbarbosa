@@ -4,8 +4,9 @@ export const ProductsListStyled = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   gap: 1rem;
+
+  width: 100%;
 
   & h2 {
     align-self: flex-start;
@@ -13,6 +14,7 @@ export const ProductsListStyled = styled.main`
 
   & > ul {
     width: 100%;
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18.75rem, auto));
     grid-gap: 1rem;
@@ -21,6 +23,7 @@ export const ProductsListStyled = styled.main`
   @media (max-width: 56.25rem) {
     width: 100%;
     max-width: 40.625rem;
+
     & > ul {
       display: flex;
       align-items: center;

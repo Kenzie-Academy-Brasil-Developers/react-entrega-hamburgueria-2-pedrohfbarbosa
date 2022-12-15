@@ -8,6 +8,7 @@ export const ToastMainPage = () => {
       <figure>
         <FiShoppingBag />
       </figure>
+
       <Text fontSize="size5" fontWeight="500" color="gray50">
         A vida é como um sanduíche, é preciso recheá-la com os melhores
         ingredientes.

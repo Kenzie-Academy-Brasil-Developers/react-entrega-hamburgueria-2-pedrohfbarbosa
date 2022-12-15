@@ -44,4 +44,5 @@ export interface IUserContext {
   handleRegister: (data: IDataRegister) => Promise<void>;
   handleLogin: (data: IDataLogin) => Promise<void>;
   handleLogout: () => void;
+  loadingForm: boolean;
 }

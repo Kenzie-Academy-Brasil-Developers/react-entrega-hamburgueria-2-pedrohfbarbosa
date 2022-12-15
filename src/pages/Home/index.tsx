@@ -13,8 +13,10 @@ export const Home = () => {
   return (
     <HomeStyled>
       <Header />
+
       <Container>
         <ProductsList />
+
         {modalCart && <Cart />}
       </Container>
     </HomeStyled>

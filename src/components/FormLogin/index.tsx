@@ -1,8 +1,7 @@
-import React from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
-import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 import { FormStyled } from "../../styles/FormStyled";
 import { LoginWrapperStyled } from "./LoginWrapperStyled";
@@ -11,15 +10,17 @@ import { ButtonStyled } from "../../styles/ButtonStyled";
 import { HeadingThree, Text } from "../../styles/Typography";
 import { LinkStyled } from "../../styles/LinkStyled";
 import { IDataLogin } from "../../providers/UserContext/interfaces";
+import { Spinner } from "../Spinner";
 
 export const FormLogin = () => {
-  const { handleLogin } = useContext(UserContext);
+  const { handleLogin, loadingForm } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IDataLogin>({
+    mode: "onBlur",
     resolver: yupResolver(schema),
   });
 
@@ -38,10 +39,12 @@ export const FormLogin = () => {
           <InputStyled
             placeholder=" "
             type="email"
-            name="email"
+            id="email"
             register={register("email")}
           />
+
           <label htmlFor="email">Email</label>
+
           {errors.email && (
             <Text fontSize="size6" color="secondary">
               {errors.email.message}
@@ -53,10 +56,12 @@ export const FormLogin = () => {
           <InputStyled
             placeholder=" "
             type="password"
-            name="password"
+            id="password"
             register={register("password")}
           />
+
           <label htmlFor="password">Digite sua senha</label>
+
           {errors.password && (
             <Text fontSize="size6" color="secondary">
               {errors.password.message}
@@ -64,8 +69,8 @@ export const FormLogin = () => {
           )}
         </fieldset>
 
-        <ButtonStyled width="100%" type="submit">
-          Logar
+        <ButtonStyled width="100%" type="submit" disabled={loadingForm}>
+          {loadingForm ? <Spinner small={true} /> : "Logar"}
         </ButtonStyled>
 
         <Text fontSize="size5" color="gray50" textCenter>

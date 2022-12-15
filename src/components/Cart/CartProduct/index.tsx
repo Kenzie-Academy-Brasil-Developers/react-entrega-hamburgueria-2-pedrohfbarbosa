@@ -1,9 +1,8 @@
-import React from "react";
+import { useContext } from "react";
 import { ButtonsWrapperStyled, CartProductStyled } from "./CartProductStyled";
 import { ButtonStyled } from "../../../styles/ButtonStyled";
 import { HeadingFour } from "../../../styles/Typography";
 import { Text } from "../../../styles/Typography";
-import { useContext } from "react";
 import { CartContext } from "../../../providers/CartContext";
 import { ICartProducts } from "../../../providers/CartContext/interfaces";
 
