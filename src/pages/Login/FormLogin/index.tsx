@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
-import { UserContext } from "../../providers/UserContext";
-import { FormStyled } from "../../styles/FormStyled";
+import { UserContext } from "../../../providers/UserContext";
+import { FormStyled } from "../../../styles/FormStyled";
 import { LoginWrapperStyled } from "./LoginWrapperStyled";
-import { InputStyled } from "../../styles/InputStyled";
-import { ButtonStyled } from "../../styles/ButtonStyled";
-import { HeadingThree, Text } from "../../styles/Typography";
-import { LinkStyled } from "../../styles/LinkStyled";
-import { IDataLogin } from "../../providers/UserContext/interfaces";
-import { Spinner } from "../Spinner";
+import { InputStyled } from "../../../styles/InputStyled";
+import { ButtonStyled } from "../../../styles/ButtonStyled";
+import { HeadingThree, Text } from "../../../styles/Typography";
+import { LinkStyled } from "../../../styles/LinkStyled";
+import { IDataLogin } from "../../../providers/UserContext/interfaces";
+import { Spinner } from "../../../components/Spinner";
 
 export const FormLogin = () => {
   const { handleLogin, loadingForm } = useContext(UserContext);

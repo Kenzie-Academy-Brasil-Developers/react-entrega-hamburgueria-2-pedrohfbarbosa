@@ -1,6 +1,6 @@
 import { AsideMainPages } from "../../components/AsideMainPages";
 import { ToastMainPage } from "../../components/AsideMainPages/ToastMainPage";
-import { FormLogin } from "../../components/FormLogin";
+import { FormLogin } from "./FormLogin";
 import { Logo } from "../../components/Header/Logo";
 import { Container } from "../../styles/Container";
 import { LoginPageStyled } from "./LoginStyled";
